@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brave New World Experience</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loading Screen (Windows XP Login) -->
+    <div class="loading-screen">
+        <div class="windows-login">
+            <div class="welcome-screen hidden">
+                <div class="welcome-text">Welcome</div>
+                <div class="welcome-bar"><div class="welcome-progress"></div></div>
+            </div>
+            <div class="login-dialog hidden">
+                <div class="login-header">Log On to World State OS</div>
+                <div class="login-body">
+                    <div class="login-field">
+                        <label>User name:</label>
+                        <span>CITIZEN_001</span>
+                    </div>
+                    <div class="login-field">
+                        <label>Password:</label>
+                        <span class="fake-password">•••••</span>
+                    </div>
+                    <div class="login-status">Please wait...</div>
+                </div>
+            </div>
+            <div class="system-tray">
+                <span class="tray-icon">🖥️</span>
+                <span id="system-time"></span>
+            </div>
+            <div class="crt-overlay"></div>
+        </div>
+    </div>
+
+    <!-- Experience Start Screen -->
+    <div class="experience-start hidden">
+        <canvas id="particle-bg"></canvas>
+        <div class="world-state-portal">
+            <div class="fog-overlay"></div>
+            <div class="needle left-needle" data-tooltip="A gramme is better than a damn"></div>
+            <div class="needle right-needle" data-tooltip="Community, Identity, Stability"></div>
+            <div class="hypnotic-spiral"></div>
+            <div class="eyes-overlay"></div>
+            <h1 class="creepy-text">OBEY. CONFORM. SUBMIT.</h1>
+            <button id="start-now-btn" class="neon-btn">START NOW</button>
+            <p class="slogan-text">YOU ARE NOT ALONE</p>
+            <div class="countdown">System Activation in <span id="countdown-time">10</span>s</div>
+        </div>
+    </div>
+
+    <!-- Character Selection Screen -->
+    <div class="character-selection hidden">
+        <div class="selection-overlay">
+            <h1>CHOOSE YOUR CHARACTER</h1>
+            <div class="character-hud">
+                <div class="selection-beam"></div>
+                <div class="caste-panel" data-character="bernard-marx">
+                    <div class="cube-wrapper">
+                        <div class="cube"></div>
+                    </div>
+                    <h2>Bernard Marx</h2>
+                    <p>The outsider seeking truth in a world of conformity.</p>
+                    <div class="character-photo bernard-photo"></div>
+                    <div class="caste-hud">Alpha</div>
+                </div>
+                <div class="caste-panel" data-character="lenina-crowne">
+                    <div class="cube-wrapper">
+                        <div class="cube"></div>
+                    </div>
+                    <h2>Lenina Crowne</h2>
+                    <p>The conformist embracing the pleasures of the World State.</p>
+                    <div class="character-photo lenina-photo"></div>
+                    <div class="caste-hud">Beta</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Headphones Recommended Screen -->
+    <div class="headphones-screen hidden">
+        <div class="headphones-overlay">
+            <h1>HEADPHONES RECOMMENDED</h1>
+            <img src="https://cdn-icons-png.flaticon.com/512/786/786306.png" alt="Headphones Icon" class="headphones-icon">
+        </div>
+    </div>
+
+    <!-- Instruction Screens -->
+    <div class="instruction-screen hidden" data-activity="quote-chamber"></div>
+    <div class="instruction-screen hidden" data-activity="tone-dissection"></div>
+    <div class="instruction-screen hidden" data-activity="caste-pressure"></div>
+    <div class="instruction-screen hidden" data-activity="dialogue-shift"></div>
+    <div class="instruction-screen hidden" data-activity="value-hierarchy"></div>
+    <div class="instruction-screen hidden" data-activity="identity-clash"></div>
+
+    <!-- Quote Chamber Screens (3 per character) -->
+    <div class="quote-chamber quote-1 hidden" data-quote="1">
+        <canvas id="smoke-bg-1"></canvas>
+        <div class="progress-tracker">Quote 1/3</div>
+        <div class="quote-overlay">
+            <div class="silhouette"></div>
+            <p class="quote-text"></p>
+            <div class="analysis-container hidden">
+                <div class="word-display"></div>
+                <div class="meaning-arrows"></div>
+                <div class="deep-analysis"></div>
+            </div>
+            <div class="your-turn hidden">
+                <h2 class="your-turn-text">YOUR TURN</h2>
+                <p class="instructions">Write your analysis of the quote and how it builds the character:</p>
+                <textarea class="analysis-input" placeholder="Type your analysis here..."></textarea>
+                <button class="submit-btn">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-feedback quote-1-feedback hidden">
+        <div class="feedback-overlay">
+            <h1>WELL DONE</h1>
+            <p>Let's try another quote to deepen your analysis.</p>
+            <button class="next-btn">NEXT</button>
+        </div>
+    </div>
+
+    <div class="quote-chamber quote-2 hidden" data-quote="2">
+        <canvas id="smoke-bg-2"></canvas>
+        <div class="progress-tracker">Quote 2/3</div>
+        <div class="quote-overlay">
+            <div class="silhouette"></div>
+            <p class="quote-text"></p>
+            <div class="analysis-container hidden">
+                <div class="word-display"></div>
+                <div class="meaning-arrows"></div>
+                <div class="deep-analysis"></div>
+            </div>
+            <div class="your-turn hidden">
+                <h2 class="your-turn-text">YOUR TURN</h2>
+                <p class="instructions">Write your analysis of the quote and how it builds the character:</p>
+                <textarea class="analysis-input" placeholder="Type your analysis here..."></textarea>
+                <button class="submit-btn">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-feedback quote-2-feedback hidden">
+        <div class="feedback-overlay">
+            <h1>GOOD PROGRESS</h1>
+            <p>One more quote to refine your understanding.</p>
+            <button class="next-btn">NEXT</button>
+        </div>
+    </div>
+
+    <div class="quote-chamber quote-3 hidden" data-quote="3">
+        <canvas id="smoke-bg-3"></canvas>
+        <div class="progress-tracker">Quote 3/3</div>
+        <div class="quote-overlay">
+            <div class="silhouette"></div>
+            <p class="quote-text"></p>
+            <div class="analysis-container hidden">
+                <div class="word-display"></div>
+                <div class="meaning-arrows"></div>
+                <div class="deep-analysis"></div>
+            </div>
+            <div class="your-turn hidden">
+                <h2 class="your-turn-text">YOUR TURN</h2>
+                <p class="instructions">Write your analysis of the quote and how it builds the character:</p>
+                <textarea class="analysis-input" placeholder="Type your analysis here..."></textarea>
+                <button class="submit-btn">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="quote-summary hidden">
+        <div class="summary-overlay">
+            <h1>SUMMARIZE CHARACTER TRAITS</h1>
+            <p>Based on the three quotes, summarize the key traits of your character:</p>
+            <textarea class="summary-input" placeholder="Type your summary here..."></textarea>
+            <button class="submit-btn">SUBMIT</button>
+        </div>
+    </div>
+
+    <!-- Tone Dissection Screen (Single Quote) -->
+    <div class="tone-dissection hidden">
+        <canvas id="tone-bg"></canvas>
+        <div class="tone-overlay">
+            <h1>TONE DISSECTION</h1>
+            <div class="tone-quote"></div>
+            <div class="sliders">
+                <div class="slider-group">
+                    <label>Bitterness</label>
+                    <input type="range" min="0" max="100" value="50" class="tone-slider" data-tone="bitterness">
+                    <span class="slider-value">50%</span>
+                </div>
+                <div class="slider-group">
+                    <label>Defiance</label>
+                    <input type="range" min="0" max="100" value="50" class="tone-slider" data-tone="defiance">
+                    <span class="slider-value">50%</span>
+                </div>
+                <div class="slider-group">
+                    <label>Resignation</label>
+                    <input type="range" min="0" max="100" value="50" class="tone-slider" data-tone="resignation">
+                    <span class="slider-value">50%</span>
+                </div>
+            </div>
+            <button class="submit-btn">SUBMIT</button>
+        </div>
+    </div>
+
+    <!-- Tone Reflection Screen -->
+    <div class="tone-reflection hidden">
+        <canvas id="reflection-bg"></canvas>
+        <div class="reflection-overlay">
+            <h1>TONE REFLECTION</h1>
+            <div class="reflection-content"></div>
+            <p class="reflection-prompt">Explain how these tones align with the character's personality:</p>
+            <textarea class="reflection-input" placeholder="Type your explanation here..."></textarea>
+            <button class="next-btn">NEXT</button>
+        </div>
+    </div>
+
+    <!-- Caste Pressure Analysis Screen -->
+    <div class="caste-pressure hidden">
+        <canvas id="caste-bg"></canvas>
+        <div class="caste-overlay">
+            <h1>CASTE PRESSURE ANALYSIS</h1>
+            <div class="caste-scenario"></div>
+            <div class="pressure-list">
+                <div class="pressure-item" draggable="true">Leadership</div>
+                <div class="pressure-item" draggable="true">Conformity</div>
+                <div class="pressure-item" draggable="true">Isolation</div>
+                <div class="pressure-item" draggable="true">Duty</div>
+            </div>
+            <div class="pressure-dropzone">
+                <div class="drop-slot" data-rank="1">Most Impact</div>
+                <div class="drop-slot" data-rank="2">2nd</div>
+                <div class="drop-slot" data-rank="3">3rd</div>
+                <div class="drop-slot" data-rank="4">Least Impact</div>
+            </div>
+            <p class="pressure-prompt">Explain your ranking:</p>
+            <textarea class="pressure-input" placeholder="Type your explanation here..."></textarea>
+            <button class="submit-btn">SUBMIT</button>
+        </div>
+    </div>
+
+    <!-- Dialogue Shift Screen -->
+    <div class="dialogue-shift hidden">
+        <canvas id="dialogue-bg"></canvas>
+        <div class="dialogue-overlay">
+            <h1>DIALOGUE SHIFT</h1>
+            <div class="dialogue-quote"></div>
+            <textarea class="dialogue-input" placeholder="Rewrite the quote from the other character's perspective..."></textarea>
+            <p class="dialogue-prompt">Explain how the meaning changes and what it reveals:</p>
+            <textarea class="dialogue-explanation" placeholder="Type your explanation here..."></textarea>
+            <button class="submit-btn">SUBMIT</button>
+        </div>
+    </div>
+
+    <!-- Value Hierarchy Screen -->
+    <div class="value-hierarchy hidden">
+        <canvas id="value-bg"></canvas>
+        <div class="value-overlay">
+            <h1>VALUE HIERARCHY</h1>
+            <div class="character-name"></div>
+            <div class="value-list">
+                <div class="value-item" draggable="true">Freedom</div>
+                <div class="value-item" draggable="true">Happiness</div>
+                <div class="value-item" draggable="true">Stability</div>
+                <div class="value-item" draggable="true">Identity</div>
+                <div class="value-item" draggable="true">Community</div>
+            </div>
+            <div class="value-dropzone">
+                <div class="drop-slot" data-rank="1">1st</div>
+                <div class="drop-slot" data-rank="2">2nd</div>
+                <div class="drop-slot" data-rank="3">3rd</div>
+                <div class="drop-slot" data-rank="4">4th</div>
+                <div class="drop-slot" data-rank="5">5th</div>
+            </div>
+            <button class="submit-btn">SUBMIT</button>
+        </div>
+    </div>
+
+    <!-- Value Comparison Screen -->
+    <div class="value-comparison hidden">
+        <div class="comparison-overlay">
+            <h1>VALUE COMPARISON</h1>
+            <div class="comparison-content"></div>
+            <p class="comparison-prompt">Reflect on the differences between character rankings:</p>
+            <textarea class="comparison-input" placeholder="Type your reflection here..."></textarea>
+            <button class="next-btn">NEXT</button>
+        </div>
+    </div>
+
+    <!-- Identity Clash Analysis Screen -->
+    <div class="identity-clash hidden">
+        <canvas id="identity-bg"></canvas>
+        <div class="identity-overlay">
+            <h1>IDENTITY CLASH ANALYSIS</h1>
+            <div class="identity-scenario"></div>
+            <div class="trait-list">
+                <label><input type="checkbox" class="trait-checkbox" value="Rebellious"> Rebellious</label>
+                <label><input type="checkbox" class="trait-checkbox" value="Compliant"> Compliant</label>
+                <label><input type="checkbox" class="trait-checkbox" value="Cynical"> Cynical</label>
+                <label><input type="checkbox" class="trait-checkbox" value="Optimistic"> Optimistic</label>
+                <label><input type="checkbox" class="trait-checkbox" value="Isolated"> Isolated</label>
+            </div>
+            <p class="identity-prompt">Explain how these traits lead to conflict and possible resolutions:</p>
+            <textarea class="identity-input" placeholder="Type your explanation here..."></textarea>
+            <button class="submit-btn">SUBMIT</button>
+        </div>
+    </div>
+
+    <!-- Class Discussion Screen -->
+    <div class="class-discussion hidden">
+        <div class="discussion-overlay">
+            <h1>CLASS DISCUSSION</h1>
+            <p>Reflect on your analysis with your peers.</p>
+            <div class="timer">Time remaining: <span id="discussion-timer">3:00</span></div>
+        </div>
+    </div>
+
+    <!-- Audio Elements -->
+    <audio id="quote-voice" src="https://example.com/voiceover.mp3"></audio> <!-- Replace with your voiceover -->
+    <audio id="click-sound" src="https://freesound.org/data/previews/66/66102_93143-lq.mp3"></audio>
+
+    <div class="scan-line-global"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
